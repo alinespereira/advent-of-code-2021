@@ -1,6 +1,6 @@
 package org.calendar
 
-object Day02 extends App with PuzzleResource {
+object Day02 extends PuzzleResource {
   val inputFile: String = "day02.txt"
 
   def parseCommand(command: String): (Int, Int) =
@@ -44,8 +44,10 @@ object Day02 extends App with PuzzleResource {
     finalPosition._1 * finalPosition._2
   }
 
-  val data = getData[String](inputFile)
-  println(dive(data))
+  def main(args: Array[String]): Unit = {
+    val data = getData(inputFile, identity)
+    println(s"Dive ${dive(data)}")
+    println(s"Dive (with aim): ${diveAim(data)}")
+  }
 
-  println(diveAim(data))
 }

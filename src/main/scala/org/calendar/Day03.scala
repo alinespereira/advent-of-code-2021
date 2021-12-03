@@ -3,7 +3,7 @@ package org.calendar
 import scala.annotation.tailrec
 import scala.math.pow
 
-object Day03 extends App with PuzzleResource {
+object Day03 extends PuzzleResource {
   val inputFile = "day03.txt"
 
   private def reportCounter(data: List[String]): List[(Int, Int)] = {
@@ -70,7 +70,9 @@ object Day03 extends App with PuzzleResource {
 
   }
 
-  val data = getData[String](inputFile)
-  println(s"Power consumption: ${powerConsumption(data)}")
-  println(s"Life support: ${lifeSupport(data)}")
+  def main(args: Array[String]): Unit = {
+    val data = getData(inputFile, identity)
+    println(s"Power consumption: ${powerConsumption(data)}")
+    println(s"Life support: ${lifeSupport(data)}")
+  }
 }

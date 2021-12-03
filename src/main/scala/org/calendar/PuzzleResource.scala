@@ -5,10 +5,10 @@ import scala.util.Using
 
 trait PuzzleResource {
 
-  def getData[T](fileName: String): List[T] =
+  def getData[T](fileName: String, converter: String => T): List[T] =
     Using(Source.fromURL(getClass.getResource(fileName))) { source =>
-      source.getLines
-        .map(_.asInstanceOf[T])
+      source.getLines()
+        .map(converter)
         .toList
     }.get
 

@@ -2,7 +2,7 @@ package org.calendar
 
 import scala.io.Source
 
-object Day01 extends App with PuzzleResource {
+object Day01 extends PuzzleResource {
   val inputFile: String = "day01.txt"
 
   def increased(measures: List[Int]): Int =
@@ -26,8 +26,9 @@ object Day01 extends App with PuzzleResource {
       }
       .sum
 
-  val data = getData[Int](inputFile)
-  println(increasedWindow(data))
-
-  def main(args: List[String]): Unit = {}
+  def main(args: Array[String]): Unit = {
+    val data = getData(inputFile, _.toInt)
+    println(s"Increased: ${increased(data)}")
+    println(s"Increased (window): ${increasedWindow(data)}")
+  }
 }
