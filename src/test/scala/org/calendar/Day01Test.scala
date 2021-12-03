@@ -15,7 +15,9 @@ class Day01Test extends AnyFunSpec {
   }
 
   describe("increasedWindow") {
-    it("should count when the sum of 3 measures is bigger than the sum of previous 3") {
+    it(
+      "should count when the sum of 3 measures is bigger than the sum of previous 3"
+    ) {
       assertResult(5)(solution.increasedWindow(data))
     }
   }

@@ -4,10 +4,10 @@ import scala.io.Source
 import scala.util.Using
 
 trait PuzzleResource {
+
   def getData[T](fileName: String): List[T] =
     Using(Source.fromURL(getClass.getResource(fileName))) { source =>
-      source
-        .getLines
+      source.getLines
         .map(_.asInstanceOf[T])
         .toList
     }.get

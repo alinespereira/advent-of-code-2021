@@ -3,7 +3,9 @@ package org.calendar
 import org.scalatest.funspec.AnyFunSpec
 
 class Day03Test extends AnyFunSpec {
-  val data = List("00100",
+
+  val data = List(
+    "00100",
     "11110",
     "10110",
     "10111",
@@ -14,7 +16,8 @@ class Day03Test extends AnyFunSpec {
     "10000",
     "11001",
     "00010",
-    "01010")
+    "01010"
+  )
 
   val solution = Day03
 

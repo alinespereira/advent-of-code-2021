@@ -5,12 +5,9 @@ import org.scalatest.funspec.AnyFunSpec
 import org.calendar.Day02
 
 class Day02Test extends AnyFunSpec {
-  val data = List("forward 5",
-    "down 5",
-    "forward 8",
-    "up 3",
-    "down 8",
-    "forward 2")
+
+  val data =
+    List("forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2")
 
   val solution = Day02
 
