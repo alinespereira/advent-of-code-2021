@@ -16,13 +16,13 @@ class Day02Test extends AnyFunSpec {
 
   describe("dive") {
     it("should get the product of final coordinates") {
-      assert(solution.dive(data) == 150)
+      assertResult(150)(solution.dive(data))
     }
   }
 
   describe("diveAim") {
     it("should get the product of final coordinates") {
-      assert(solution.diveAim(data) == 900)
+      assertResult(900)(solution.diveAim(data))
     }
   }
 }

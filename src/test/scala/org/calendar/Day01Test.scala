@@ -10,13 +10,13 @@ class Day01Test extends AnyFunSpec {
 
   describe("increased") {
     it("should count when a measure is bigger than the previous") {
-      assert(solution.increased(data) == 7)
+      assertResult(7)(solution.increased(data))
     }
   }
 
   describe("increasedWindow") {
     it("should count when the sum of 3 measures is bigger than the sum of previous 3") {
-      assert(solution.increasedWindow(data) == 5)
+      assertResult(5)(solution.increasedWindow(data))
     }
   }
 }
