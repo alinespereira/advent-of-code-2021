@@ -4,10 +4,12 @@ import scala.io.Source
 import scala.util.Using
 
 trait PuzzleResource {
+  val inputFile: String
 
   def getData[T](fileName: String, converter: String => T): List[T] =
     Using(Source.fromURL(getClass.getResource(fileName))) { source =>
-      source.getLines()
+      source
+        .getLines()
         .map(converter)
         .toList
     }.get

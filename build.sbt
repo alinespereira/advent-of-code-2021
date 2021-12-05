@@ -2,6 +2,8 @@ name := "Advent of Code 2021"
 
 version := "0.1"
 
+Test / test / coverageEnabled := true
+
 scalaVersion := "2.13.7"
 
 val scalaTestVersion = "3.2.9"
