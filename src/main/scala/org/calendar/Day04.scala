@@ -76,17 +76,23 @@ object Day04 extends PuzzleResource {
       .toList
       .map(boardData => parseBoard(boardData.tail))
 
-  def runGame(drawnNumbers: List[Int], boards: List[Board]): Option[Int] =
-    boards.map(_.simulate(drawnNumbers)).minBy(_._2)._1
+  def runGame(drawnNumbers: List[Int], boards: List[Board]): (Option[Int], Option[Int]) = {
+    val sortedScores = boards.map(_.simulate(drawnNumbers)).sortBy(_._2).map(_._1)
+    (sortedScores.head, sortedScores.last)
+  }
 
   def main(args: Array[String]): Unit = {
     val data = getData(inputFile, identity)
     val drawnNumbers = parseDrawnNumbers(data)
     val boards = parseBoards(data)
-    val winnerScore = runGame(drawnNumbers, boards)
+    val (winnerScore, worstScore) = runGame(drawnNumbers, boards)
     winnerScore match {
       case Some(score) => println(s"Winner score is ${score}")
       case None => println("Nobody won")
+    }
+    worstScore match {
+      case Some(score) => println(s"Worst score is ${score}")
+      case None => println("Nobody lost")
     }
   }
 }

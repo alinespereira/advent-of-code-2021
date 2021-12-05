@@ -26,7 +26,7 @@ val data =
 val drawnNumbers = parseDrawnNumbers(data)
 val boards = parseBoards(data)
 val results = runGame(drawnNumbers, boards)
-val winnerScore = winningBoardScore(results)
+val winnerScore = runGame(drawnNumbers, boards)._1
 
 val turns = drawnNumbers.zip(drawnNumbers.scanLeft(boards.last)({
   (board, drawn) => board.check(drawn)

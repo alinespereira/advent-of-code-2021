@@ -36,17 +36,17 @@ class Day04Test extends AnyFunSpec {
     }
 
     it("should get no score at start of the game") {
-      val drawnNumbers = parseDrawnNumbers(data)
       val boards = parseBoards(data)
       val scores = boards.map(_.score)
       assert(scores.forall(_.isEmpty))
     }
 
-    it("should get the final score of the game") {
+    it("should get the final scores of the game") {
       val drawnNumbers = parseDrawnNumbers(data)
       val boards = parseBoards(data)
-      val winnerScore = runGame(drawnNumbers, boards)
+      val (winnerScore, worstScore) = runGame(drawnNumbers, boards)
       assertResult(Some(4512))(winnerScore)
+      assertResult(Some(1924))(worstScore)
     }
   }
 }
