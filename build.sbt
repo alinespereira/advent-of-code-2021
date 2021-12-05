@@ -4,6 +4,8 @@ version := "0.1"
 
 Test / test / coverageEnabled := true
 
+coverageExcludedPackages := "org.calendar.*.main"
+
 scalaVersion := "2.13.7"
 
 val scalaTestVersion = "3.2.9"
