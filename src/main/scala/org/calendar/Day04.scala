@@ -49,14 +49,13 @@ object Day04 extends PuzzleResource {
         Some(number)
       )
 
-    def score: Option[Int] = {
+    def score: Option[Int] =
       if (won)
         lastChecked.map(lastNumber =>
           numbers.flatten.filter(!_.checked).map(_.number).sum * lastNumber
         )
       else
         None
-    }
   }
 
   def parseDrawnNumbers(data: List[String]): List[Int] =
@@ -76,8 +75,12 @@ object Day04 extends PuzzleResource {
       .toList
       .map(boardData => parseBoard(boardData.tail))
 
-  def runGame(drawnNumbers: List[Int], boards: List[Board]): (Option[Int], Option[Int]) = {
-    val sortedScores = boards.map(_.simulate(drawnNumbers)).sortBy(_._2).map(_._1)
+  def runGame(
+    drawnNumbers: List[Int],
+    boards: List[Board]
+  ): (Option[Int], Option[Int]) = {
+    val sortedScores =
+      boards.map(_.simulate(drawnNumbers)).sortBy(_._2).map(_._1)
     (sortedScores.head, sortedScores.last)
   }
 
@@ -88,11 +91,11 @@ object Day04 extends PuzzleResource {
     val (winnerScore, worstScore) = runGame(drawnNumbers, boards)
     winnerScore match {
       case Some(score) => println(s"Winner score is ${score}")
-      case None => println("Nobody won")
+      case None        => println("Nobody won")
     }
     worstScore match {
       case Some(score) => println(s"Worst score is ${score}")
-      case None => println("Nobody lost")
+      case None        => println("Nobody lost")
     }
   }
 }
