@@ -5,30 +5,35 @@ import scala.annotation.tailrec
 object Day06 extends PuzzleResource {
   override val inputFile: String = "day06.txt"
 
-  case class LanternFish(timer: Int = 6) {
+  val newFishTimer: Int = 8
+
+  case class LanternFish(timer: Int = newFishTimer) {
+
+    val timeToReplicate: Int = 6
 
     def evolve: LanternFish = timer match {
-      case 0 => LanternFish()
+      case 0 => LanternFish(timeToReplicate)
       case _ => LanternFish(timer - 1)
     }
   }
 
   @tailrec
-  def evolve(fish: Map[LanternFish, Int], days: Int): Map[LanternFish, Int] =
+  def evolve(fish: Map[LanternFish, Long], days: Int): Map[LanternFish, Long] =
     if (days == 0) fish
     else {
-      val newFish = fish.getOrElse(LanternFish(0), 0)
-      val evolvedFish = fish.filter(_._2 != 0).map {
-        case (f: LanternFish, count: Int) =>
-          LanternFish(f.timer - 1) -> count
-      }
-      val resultingFish =
-        evolvedFish +
-          (LanternFish(8) -> newFish) +
-          (LanternFish(6) -> (evolvedFish.getOrElse(LanternFish(6), 0) + fish.getOrElse(LanternFish(0), 0)))
-      //      println(s"days: $days")
-      //      println((evolvedFish + (LanternFish(8) -> newFish)).mkString("\n"))
-      evolve(evolvedFish + (LanternFish(8) -> newFish), days - 1)
+      val resultingFish: Map[LanternFish, Long] = Map(
+        LanternFish(8) -> fish.getOrElse(LanternFish(0), 0L),
+        LanternFish(7) -> fish.getOrElse(LanternFish(8), 0L),
+        LanternFish(6) -> (fish.getOrElse(LanternFish(7), 0L) + fish
+          .getOrElse(LanternFish(0), 0L)),
+        LanternFish(5) -> fish.getOrElse(LanternFish(6), 0L),
+        LanternFish(4) -> fish.getOrElse(LanternFish(5), 0L),
+        LanternFish(3) -> fish.getOrElse(LanternFish(4), 0L),
+        LanternFish(2) -> fish.getOrElse(LanternFish(3), 0L),
+        LanternFish(1) -> fish.getOrElse(LanternFish(2), 0L),
+        LanternFish(0) -> fish.getOrElse(LanternFish(1), 0L)
+      )
+      evolve(resultingFish, days - 1)
     }
 
   def main(args: Array[String]): Unit = {
@@ -43,7 +48,7 @@ object Day06 extends PuzzleResource {
       .groupBy(_.timer)
       .map({
         case (timer: Int, fish: List[LanternFish]) =>
-          LanternFish(timer) -> fish.length
+          LanternFish(timer) -> fish.length.toLong
       })
 
     val result = evolve(data, 80)

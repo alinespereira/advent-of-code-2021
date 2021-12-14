@@ -14,7 +14,7 @@ class Day06Test extends AnyFunSpec {
     .groupBy(_.timer)
     .map({
       case (timer: Int, fish: List[LanternFish]) =>
-        LanternFish(timer) -> fish.length
+        LanternFish(timer) -> fish.length.toLong
     })
 
   describe("LanterFish") {
@@ -66,7 +66,7 @@ class Day06Test extends AnyFunSpec {
 
     it("evolves in 256 days") {
       val result = evolve(fish, 256)
-      assertResult(26984457539L)(result.values.sum)
+      assertResult(26984457539L)(result.values.map(_.toLong).sum)
     }
   }
 }
