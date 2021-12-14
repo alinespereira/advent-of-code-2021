@@ -88,14 +88,6 @@ class Day05Test extends AnyFunSpec {
         parsedData.filter(line => line.isHorizontal || line.isVertical)
       val resGrid = countCrossingVents(filteredLines, grid)
 
-      for (y <- 0 until 10) {
-        for (x <- 0 until 10) {
-          print(s" ${resGrid(Point(x, y)).get}")
-        }
-        println()
-      }
-      println(resGrid.values.filter(_.getOrElse(0) >= 2))
-      println(resGrid.values.count(_.getOrElse(0) >= 2))
       assertResult(5)(resGrid.values.count(_.getOrElse(0) >= 2))
     }
 
@@ -106,14 +98,6 @@ class Day05Test extends AnyFunSpec {
       val parsedData = data.map(Line.fromString).map(_.get)
       val resGrid = countCrossingVents(parsedData, grid)
 
-      for (y <- 0 until 10) {
-        for (x <- 0 until 10) {
-          print(s" ${resGrid(Point(x, y)).get}")
-        }
-        println()
-      }
-      println(resGrid.values.filter(_.getOrElse(0) >= 2))
-      println(resGrid.values.count(_.getOrElse(0) >= 2))
       assertResult(12)(resGrid.values.count(_.getOrElse(0) >= 2))
     }
   }

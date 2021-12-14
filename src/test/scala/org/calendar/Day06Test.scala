@@ -7,48 +7,28 @@ class Day06Test extends AnyFunSpec {
 
   import org.calendar.Day06._
 
+  val fish = data
+    .split(",")
+    .map(fish => LanternFish(fish.toInt))
+    .toList
+    .groupBy(_.timer)
+    .map({
+      case (timer: Int, fish: List[LanternFish]) =>
+        LanternFish(timer) -> fish.length
+    })
+
   describe("LanterFish") {
     it("evolves in 1 day") {
-      val fish = data
-        .split(",")
-        .map(fish => LanternFish(fish.toInt))
-        .toList
-        .groupBy(_.timer)
-        .map({
-          case (timer: Int, fish: List[LanternFish]) =>
-            LanternFish(timer) -> fish.length
-        })
-
       val result = evolve(fish, 1)
       assertResult(5)(result.values.sum)
     }
 
     it("evolves in 4 days") {
-      val fish = data
-        .split(",")
-        .map(fish => LanternFish(fish.toInt))
-        .toList
-        .groupBy(_.timer)
-        .map({
-          case (timer: Int, fish: List[LanternFish]) =>
-            LanternFish(timer) -> fish.length
-        })
-
       val result = evolve(fish, 4)
       assertResult(9)(result.values.sum)
     }
 
     it("evolves a lot") {
-      val fish = data
-        .split(",")
-        .map(fish => LanternFish(fish.toInt))
-        .toList
-        .groupBy(_.timer)
-        .map({
-          case (timer: Int, fish: List[LanternFish]) =>
-            LanternFish(timer) -> fish.length
-        })
-
       val examples = List(
         (0, 5),
         (1, 5),
@@ -70,63 +50,21 @@ class Day06Test extends AnyFunSpec {
     }
 
     it("evolves in 7 days") {
-      val fish = data
-        .split(",")
-        .map(fish => LanternFish(fish.toInt))
-        .toList
-        .groupBy(_.timer)
-        .map({
-          case (timer: Int, fish: List[LanternFish]) =>
-            LanternFish(timer) -> fish.length
-        })
-
-      println(fish)
       val result = evolve(fish, 7)
-      println(result)
       assertResult(10)(result.values.sum)
     }
 
     it("evolves in 18 days") {
-      val fish = data
-        .split(",")
-        .map(fish => LanternFish(fish.toInt))
-        .toList
-        .groupBy(_.timer)
-        .map({
-          case (timer: Int, fish: List[LanternFish]) =>
-            LanternFish(timer) -> fish.length
-        })
-
       val result = evolve(fish, 18)
       assertResult(26)(result.values.sum)
     }
 
     it("evolves in 80 days") {
-      val fish = data
-        .split(",")
-        .map(fish => LanternFish(fish.toInt))
-        .toList
-        .groupBy(_.timer)
-        .map({
-          case (timer: Int, fish: List[LanternFish]) =>
-            LanternFish(timer) -> fish.length
-        })
-
       val result = evolve(fish, 80)
       assertResult(5934)(result.values.sum)
     }
 
     it("evolves in 256 days") {
-      val fish = data
-        .split(",")
-        .map(fish => LanternFish(fish.toInt))
-        .toList
-        .groupBy(_.timer)
-        .map({
-          case (timer: Int, fish: List[LanternFish]) =>
-            LanternFish(timer) -> fish.length
-        })
-
       val result = evolve(fish, 256)
       assertResult(26984457539L)(result.values.sum)
     }
